@@ -54,6 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateTotal(){
     totalAmount = calculateTotal();
-    totalAmountDisplay.textContent = total.toFixed(2);
+    totalAmountDisplay.textContent = totalAmount.toFixed(2);
   }
+  expenseList.addEventListener('click', (e) => {
+    if(e.target.tagName === 'BUTTON'){
+      const expenseId = parseInt(e.target.getAttribute('data-id'));
+      expenses = expenses.filter(expense => expense.id !== expenseId);
+
+      saveExpenseTolocal();
+      renderExpenses();
+      updateTotal();
+    }
+  })
 });
